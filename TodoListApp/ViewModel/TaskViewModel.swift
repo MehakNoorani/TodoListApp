@@ -62,7 +62,7 @@ class TaskViewModel {
         }
     }
         // MARK: - Save
-        private func saveContext() {
+         func saveContext() {
             do {
                 try context.save()
                 fetchTasks()
