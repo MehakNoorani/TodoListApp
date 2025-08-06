@@ -11,12 +11,13 @@ import UIKit
 
 class TaskViewModel {
 
-        var tasks: [Task] = []
+        var tasks: [ToDoListItem] = []
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 
-        // MARK: - Fetch Tasks
+    // MARK: - Fetch Tasks
         func fetchTasks() {
-            let request: NSFetchRequest<ToDoListItem> = Task.fetchRequest()
+            let request: NSFetchRequest<ToDoListItem> = ToDoListItem.fetchRequest()
+
             request.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: false)]
             do {
                 tasks = try context.fetch(request)
@@ -27,19 +28,20 @@ class TaskViewModel {
 
         // MARK: - Add Task
         func addTask(title: String, dueDate: Date, priority: Int16, status: String) {
-            let task = Task(context: context)
-            task.title = title
-            task.dueDate = dueDate
-            task.priority = priority
-            task.status = status
-            task.createdAt = Date()
+            let newTask = ToDoListItem(context: context)
+            newTask.title = title
+            newTask.priority = priority
+            newTask.status = status
+            newTask.createdAt = Date()
             saveContext()
+            fetchTasks()
+
         }
 
+
         // MARK: - Update Task
-        func updateTask(_ task: Task, title: String, dueDate: Date, priority: Int16, status: String) {
+        func updateTask(_ task: ToDoListItem, title: String, dueDate: Date, priority: Int16, status: String) {
             task.title = title
-            task.dueDate = dueDate
             task.priority = priority
             task.status = status
             saveContext()
@@ -51,7 +53,14 @@ class TaskViewModel {
             context.delete(task)
             saveContext()
         }
-
+        func searchTasks(with query: String) -> [ToDoListItem] {
+            if query.isEmpty {
+            return tasks
+        }
+        return tasks.filter { task in
+            task.title?.lowercased().contains(query.lowercased()) == true
+        }
+    }
         // MARK: - Save
         private func saveContext() {
             do {
