@@ -27,7 +27,7 @@ class TaskViewModel {
         }
 
         // MARK: - Add Task
-        func addTask(title: String, dueDate: Date, priority: Int16, status: String) {
+        func addTask(title: String, createdAt: Date, priority: Int16, status: String) {
             let newTask = ToDoListItem(context: context)
             newTask.title = title
             newTask.priority = priority
@@ -46,6 +46,7 @@ class TaskViewModel {
             task.status = status
             saveContext()
         }
+    
 
         // MARK: - Delete Task
         func deleteTask(at index: Int) {
@@ -70,6 +71,4 @@ class TaskViewModel {
                 print("Failed to save: \(error)")
             }
         }
-    
-
 }

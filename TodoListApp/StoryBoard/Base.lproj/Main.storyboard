@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="u2m-1i-Ztz">
-    <device id="retina6_12" orientation="portrait" appearance="dark"/>
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -116,8 +116,8 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Done" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uNR-mJ-JUA">
-                                        <rect key="frame" x="285.66666666666669" y="169.33333333333331" width="35.666666666666686" height="23"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Todo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uNR-mJ-JUA">
+                                        <rect key="frame" x="288" y="169.33333333333331" width="33.333333333333314" height="23"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="23" id="zyg-sL-XHX"/>
                                         </constraints>
@@ -129,25 +129,20 @@
                                         <rect key="frame" x="321.33333333333331" y="116.33333333333333" width="43.666666666666686" height="34.333333333333329"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="chevron.up.chevron.down" catalog="system"/>
-                                        <connections>
-                                            <action selector="priorityButtonTapped:" destination="lEc-xv-y58" eventType="touchUpInside" id="2z5-o6-qRu"/>
-                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q6j-yE-Qpe">
                                         <rect key="frame" x="321.33333333333331" y="163.66666666666669" width="43.666666666666686" height="34.333333333333343"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" image="chevron.up.chevron.down" catalog="system"/>
-                                        <connections>
-                                            <action selector="statusButtonTapped:" destination="lEc-xv-y58" eventType="touchUpInside" id="mgD-HV-KUm"/>
-                                        </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Task..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Wmo-X2-6Dn">
                                         <rect key="frame" x="8" y="18" width="357" height="34"/>
+                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fKS-Oc-SZl">
-                                        <rect key="frame" x="246.33333333333331" y="122.66666666666666" width="75" height="22"/>
+                                        <rect key="frame" x="296.33333333333331" y="122.66666666666666" width="25" height="22"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="lvD-37-rEf">
                                                 <rect key="frame" x="0.0" y="-0.33333333333333215" width="25" height="21.666666666666664"/>
@@ -157,16 +152,16 @@
                                                     <constraint firstAttribute="height" constant="22" id="y2F-L5-zD3"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="py2-nr-LKL">
-                                                <rect key="frame" x="25" y="-0.33333333333333215" width="25" height="21.666666666666664"/>
+                                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="py2-nr-LKL">
+                                                <rect key="frame" x="0.0" y="-0.33333333333333215" width="25" height="21.666666666666664"/>
                                                 <color key="tintColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="22" id="NOu-rL-zk6"/>
                                                     <constraint firstAttribute="width" constant="25" id="WJA-Ca-aNQ"/>
                                                 </constraints>
                                             </imageView>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="AtM-yZ-Tpn">
-                                                <rect key="frame" x="50" y="-0.33333333333333215" width="25" height="21.666666666666664"/>
+                                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="AtM-yZ-Tpn">
+                                                <rect key="frame" x="0.0" y="-0.33333333333333215" width="25" height="21.666666666666664"/>
                                                 <color key="tintColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="25" id="Mgk-I6-T1c"/>
@@ -223,7 +218,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Save"/>
                                 <connections>
-                                    <action selector="saveBtnTapped:" destination="lEc-xv-y58" eventType="touchUpInside" id="sBp-df-sR2"/>
+                                    <action selector="saveBtnTapped:" destination="lEc-xv-y58" eventType="touchUpInside" id="fIM-Ok-fET"/>
                                 </connections>
                             </button>
                         </barButtonItem>

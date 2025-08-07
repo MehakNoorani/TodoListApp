@@ -87,7 +87,6 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="eKq-Uz-yJZ" firstAttribute="top" secondItem="79L-Fl-qDN" secondAttribute="top" constant="10" id="7SC-0f-QZq"/>
                             <constraint firstItem="eKq-Uz-yJZ" firstAttribute="leading" secondItem="79L-Fl-qDN" secondAttribute="leading" constant="8" id="8v5-BE-gU6"/>
@@ -122,9 +121,6 @@
     </objects>
     <resources>
         <image name="star.fill" catalog="system" width="128" height="116"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

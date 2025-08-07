@@ -20,87 +20,104 @@ class AddTaskViewController: UIViewController {
     @IBOutlet weak var starImageView2: UIImageView!
     @IBOutlet weak var starImageView3: UIImageView!
     
-    var selectedPriority: Int = 0
+    var selectedPriority: Int = 1
     var viewModel: TaskViewModel!
     var onTaskAdded: (() -> Void)?
     var selectedStatus: String = "Todo"
+    var isEditingTask: Bool = false
+    var taskToEdit: ToDoListItem?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        title = "Add new task"
-        navigationController?.navigationBar.prefersLargeTitles = false
-        
-        configurePriorityMenu()
-        configureStatusMenu()
+        title = isEditingTask ? "Edit Task" : "Add Task"
+               navigationController?.navigationBar.prefersLargeTitles = false
+               
+               configurePriorityMenu()
+               configureStatusMenu()
+               
+               if isEditingTask, let task = taskToEdit {
+                   taskTextField.text = task.title
+                   dueDatePicker.date = task.createdAt ?? Date()
+                   selectedPriority = Int(task.priority)
+                   selectedStatus = task.status ?? "Todo"
+                   updateStarImages(for: selectedPriority)
+                   statusLabel.text = selectedStatus
+               }
     }
     
     @IBAction func saveBtnTapped(_ sender: UIButton) {
-        
-        
-        guard let taskTitle = taskTextField.text, !taskTitle.isEmpty else { return }
-        
-        let newTask = ToDoListItem(context: viewModel.context)
-        newTask.title = taskTitle
-        newTask.createdAt = Date()
-        
-        newTask.priority = Int16(selectedPriority)
-        newTask.status = selectedStatus   // <-- Save selected status
-        
-        viewModel.saveContext()
-        onTaskAdded?() // Callback to reload table
-        dismiss(animated: true)
-        navigationController?.popViewController(animated: true)
-        
-    }
-    
+        let title = taskTextField.text ?? ""
+                let date = dueDatePicker.date
+                
+                if isEditingTask, let task = taskToEdit {
+                    task.title = title
+                    task.createdAt = dueDatePicker.date
+                    task.priority = Int16(selectedPriority)
+                    task.status = selectedStatus
+                } else {
+                    viewModel.addTask(title: title, createdAt: date, priority: Int16(selectedPriority), status: selectedStatus)
+                }
+                
+                viewModel.saveContext()
+                onTaskAdded?()
+                navigationController?.popViewController(animated: true)
+            }
+
+    // MARK: - Priority Menu
     func configurePriorityMenu() {
         let priority1 = UIAction(title: "⭐️", handler: { _ in
             self.selectedPriority = 1
-            self.starImageView1.isHidden = false
-            self.starImageView2.isHidden = true
-            self.starImageView3.isHidden = true
+            self.updateStarImages(for: 1)
         })
-        
+            
         let priority2 = UIAction(title: "⭐️⭐️", handler: { _ in
             self.selectedPriority = 2
-            self.starImageView1.isHidden = false
-            self.starImageView2.isHidden = false
-            self.starImageView3.isHidden = true
+            self.updateStarImages(for: 2)
         })
-        
+            
         let priority3 = UIAction(title: "⭐️⭐️⭐️", handler: { _ in
             self.selectedPriority = 3
-            self.starImageView1.isHidden = false
-            self.starImageView2.isHidden = false
-            self.starImageView3.isHidden = false
+            self.updateStarImages(for: 3)
         })
-        
-        let menu = UIMenu(title: "Select Priority", children: [priority1, priority2, priority3])
+            
+        let menu = UIMenu(
+            title: "Select Priority",
+            children: [priority1, priority2, priority3]
+        )
         priorityButton.menu = menu
         priorityButton.showsMenuAsPrimaryAction = true
     }
-    
+
+    func updateStarImages(for priority: Int) {
+        starImageView1.isHidden = priority < 1
+        starImageView2.isHidden = priority < 2
+        starImageView3.isHidden = priority < 3
+    }
+
+    // MARK: - Status Menu
     func configureStatusMenu() {
         let todo = UIAction(title: "Todo", handler: { _ in
-            self.statusLabel.text = "Todo"
             self.updateStatusLabel(to: "Todo")
         })
-        
+            
         let done = UIAction(title: "Done", handler: { _ in
-            self.statusLabel.text = "Done"
             self.updateStatusLabel(to: "Done")
         })
-        
+            
         let menu = UIMenu(title: "Select Status", children: [todo, done])
         statusButton.menu = menu
         statusButton.showsMenuAsPrimaryAction = true
     }
-    
+
     func updateStatusLabel(to status: String) {
         statusLabel.text = status
+        selectedStatus = status
         print("Status updated to: \(status)")
-        
     }
-    
 }
+   
+
+
+
+
+
